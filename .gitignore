@@ -1,5 +1,6 @@
 .autoenv.zsh
 .autoenv_leave.zsh
+3.5.2
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
