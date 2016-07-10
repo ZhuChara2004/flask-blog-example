@@ -13,9 +13,11 @@ def index():
     return render_template('index.html', posts=Post.query.all())
 
 
-@app.route('/<name>')
-def hello_name(name):
-    return "Hello {}!".format(name)
+@app.route('/post/<id>')
+def show(id):
+    from models import Post
+    post = Post.query.get(id)
+    return render_template('show.html', post=post)
 
 if __name__ == '__main__':
     app.run()
