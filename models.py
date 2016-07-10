@@ -17,4 +17,4 @@ class Post(db.Model):
         self.updated_at = updated_at
 
     def __repr__(self):
-        return '<Post %r>' % self.id
+        return '<id: %r, title: %s, body: %s>' % (self.id, self.title, self.body)
