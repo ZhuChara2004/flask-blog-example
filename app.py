@@ -19,5 +19,10 @@ def show(id):
     post = Post.query.get(id)
     return render_template('show.html', post=post)
 
+
+@app.route('/posts/new')
+def new():
+    return render_template('new.html')
+
 if __name__ == '__main__':
     app.run()
