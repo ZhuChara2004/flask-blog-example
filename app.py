@@ -15,8 +15,7 @@ def index():
 @app.route('/posts/<id>')
 def show(id):
     from models import Post
-    post = Post.query.get(id)
-    return render_template('show.html', post=post)
+    return render_template('show.html', post=Post.query.get(id))
 
 
 @app.route('/posts/new')
@@ -27,6 +26,7 @@ def new():
 @app.route('/posts', methods=['POST'])
 def create():
     from models import Post
+    from app import db
     post = Post(request.form['title'], request.form['body'], datetime.datetime.now(), datetime.datetime.now())
     db.session.add(post)
     db.session.commit()
@@ -35,9 +35,20 @@ def create():
 
 @app.route('/posts/<id>/edit')
 def edit(id):
-    print('Edit form')
     from models import Post
     return render_template('edit.html', post=Post.query.get(id))
+
+
+@app.route('/posts/<id>', methods=['POST'])
+def update(id):
+    from models import Post
+    from app import db
+    post = Post.query.get(id)
+    post.title = request.form['title']
+    post.body = request.form['body']
+    db.session.add(post)
+    db.session.commit()
+    return render_template('show.html', post=post)
 
 
 if __name__ == '__main__':
