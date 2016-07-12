@@ -6,6 +6,9 @@
 </head>
 <body>
     <h2>{{post.title}}</h2>
+    <ul class="actions">
+        <li class="action"><a href="{{url_for('edit', id=post.id)}}">Edit</a></li>
+    </ul>
     <div class="body">{{post.body}}</div>
     <h5>{{post.created_at.strftime("%Y-%m-%d %H:%M:%S")}}</h5>
 </body>
